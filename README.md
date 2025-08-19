@@ -4,7 +4,7 @@
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![claude-code-sdk](https://img.shields.io/badge/claude--code--sdk-0.0.20+-green.svg)](https://pypi.org/project/claude-code-sdk/)
+[![claude-code-trees](https://img.shields.io/badge/claude--code--trees-0.1.0-green.svg)](https://pypi.org/project/claude-code-trees/)
 [![Tests](https://img.shields.io/badge/tests-96%20passing-success.svg)](https://github.com/rizome-dev/claude-code-trees)
 
 Claude Code Trees enables you to orchestrate multiple Claude Code instances across different git worktrees, allowing for parallel development workflows and sophisticated AI-powered coding tasks. Perfect for managing complex projects, running parallel experiments, or coordinating multi-faceted development work.
