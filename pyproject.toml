@@ -1,6 +1,6 @@
 [project]
 name = "claude-code-trees"
-version = "0.2.0"
+version = "0.1.0"
 description = "Production-ready Python library for managing Claude Code instances on git worktrees"
 authors = [
     {name = "samjtro", email = "hi@samjtro.com"},
@@ -17,7 +17,7 @@ dependencies = [
 requires-python = ">=3.10,<4.0"
 readme = "README.md"
 license = {text = "MIT"}
-keywords = ["claude", "code", "git", "worktree", "ai"]
+keywords = ["claude", "code", "git", "worktree", "ai", "orchestration", "development"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -27,6 +27,13 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
+
+[project.urls]
+Homepage = "https://github.com/rizome-dev/claude-code-trees"
+Repository = "https://github.com/rizome-dev/claude-code-trees"
+Documentation = "https://github.com/rizome-dev/claude-code-trees#readme"
+"Issue Tracker" = "https://github.com/rizome-dev/claude-code-trees/issues"
+Changelog = "https://github.com/rizome-dev/claude-code-trees/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [

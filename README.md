@@ -9,7 +9,7 @@
 
 Claude Code Trees enables you to orchestrate multiple Claude Code instances across different git worktrees, allowing for parallel development workflows and sophisticated AI-powered coding tasks. Perfect for managing complex projects, running parallel experiments, or coordinating multi-faceted development work.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -231,7 +231,7 @@ analysis_tasks = [
 results = await orchestrator.run_parallel_tasks(analysis_tasks)
 ```
 
-## 🛡️ Production Features
+## Features
 
 ### Error Handling & Resilience
 
@@ -284,7 +284,7 @@ async with orchestrator:
     instances = await asyncio.gather(*tasks)
 ```
 
-## 🔧 Development
+## Development
 
 ### Setup
 
@@ -325,53 +325,6 @@ python examples/parallel_tasks.py
 python examples/advanced_orchestration.py
 ```
 
-## 🏗️ Architecture
-
-Claude Code Trees follows a modular, service-oriented architecture:
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                     Orchestrator                         │
-│  (High-level coordination and resource management)       │
-└─────────────┬───────────────────────────┬───────────────┘
-              │                           │
-    ┌─────────▼──────────┐     ┌─────────▼──────────┐
-    │ ClaudeCodeInstance │     │  SessionManager    │
-    │  (Claude SDK wrap) │     │  (Task tracking)   │
-    └─────────┬──────────┘     └─────────┬──────────┘
-              │                           │
-    ┌─────────▼──────────┐     ┌─────────▼──────────┐
-    │ WorktreeManager    │     │     Database       │
-    │  (Git isolation)   │     │  (SQLite/SQLAlch)  │
-    └────────────────────┘     └────────────────────┘
-```
-
-- **Orchestrator**: Main coordination hub for managing multiple instances
-- **ClaudeCodeInstance**: Wrapper around claude-code-sdk with retry logic and error handling
-- **WorktreeManager**: Manages git worktrees for isolated development environments
-- **SessionManager**: Handles persistent sessions with task dependencies
-- **Database**: SQLAlchemy-based persistence layer for state management
-
-## 📦 Dependencies
-
-- **[claude-code-sdk](https://pypi.org/project/claude-code-sdk/)** (>=0.0.20): Official Claude Code Python SDK
-- **[anyio](https://github.com/agronholm/anyio)** (>=4.0.0): Async runtime compatibility
-- **[GitPython](https://github.com/gitpython-developers/GitPython)** (>=3.1.40): Git worktree management
-- **[SQLAlchemy](https://www.sqlalchemy.org/)** (>=2.0.0): Database ORM
-- **[Pydantic](https://pydantic-docs.helpmanual.io/)** (>=2.0.0): Data validation
-- **[Click](https://click.palletsprojects.com/)** (>=8.0.0): CLI framework
-- **[Rich](https://github.com/Textualize/rich)** (>=13.0.0): Terminal formatting
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ---
-
-**Claude Code Trees** - Production-ready orchestration for AI-powered development workflows.
 
 Built with ❤️ by [Rizome Labs](https://rizome.dev)
