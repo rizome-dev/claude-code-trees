@@ -1,23 +1,13 @@
 # Claude Code Trees
 
-**Production-ready Python library for managing Claude Code instances on git worktrees**
+Easily manage Claude Code via Git Worktrees, SQLite & Claude Code SDK.
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![claude-code-trees](https://img.shields.io/badge/claude--code--trees-0.1.0-green.svg)](https://pypi.org/project/claude-code-trees/)
 [![Tests](https://img.shields.io/badge/tests-96%20passing-success.svg)](https://github.com/rizome-dev/claude-code-trees)
 
-Claude Code Trees enables you to orchestrate multiple Claude Code instances across different git worktrees, allowing for parallel development workflows and sophisticated AI-powered coding tasks. Perfect for managing complex projects, running parallel experiments, or coordinating multi-faceted development work.
-
-## Quick Start
-
-### Installation
-
 ```bash
-# Step 1: Install Claude Code CLI (required)
-npm install -g @anthropic-ai/claude-code
-
-# Step 2: Install claude-code-trees
 pip install claude-code-trees
 
 # Or install from source with PDM (recommended for development)
@@ -26,7 +16,7 @@ cd claude-code-trees
 pdm install
 ```
 
-### Basic Usage
+## Quick Start
 
 ```python
 import asyncio
@@ -69,33 +59,9 @@ async def main():
 asyncio.run(main())
 ```
 
-### CLI Usage
-
-```bash
-# Create a new Claude Code instance
-clct create --name my-instance --branch feature/new-work
-
-# List all instances
-clct list
-
-# Run a task on an instance
-clct run-task <instance-id> "Implement user authentication system"
-
-# Run multiple tasks in parallel
-clct parallel tasks.json --session-name "parallel-dev-work"
-
-# Monitor system health
-clct health
-
-# Clean up old resources
-clct cleanup --max-age-hours 24
-```
-
 ## Documentation
 
-### Core Components
-
-#### Orchestrator
+### Orchestrator
 The main coordination hub that manages instances, worktrees, and sessions.
 
 ```python
@@ -114,7 +80,7 @@ result = await orchestrator.run_parallel_tasks(tasks)
 health = await orchestrator.health_check()
 ```
 
-#### ClaudeCodeInstance
+### ClaudeCodeInstance
 Wrapper for individual Claude Code instances running in specific worktrees.
 
 ```python
@@ -128,7 +94,7 @@ result = await instance.run_task("Implement feature X", context={})
 health = await instance.health_check()
 ```
 
-#### WorktreeManager
+### WorktreeManager
 Manages git worktrees for isolated development environments.
 
 ```python
@@ -140,7 +106,7 @@ worktrees = manager.list_worktrees()
 success = manager.remove_worktree("old-worktree")
 ```
 
-#### SessionManager
+### SessionManager
 Handles persistent sessions with task tracking and execution.
 
 ```python
@@ -158,7 +124,7 @@ task = manager.add_task(
 success = await manager.execute_session(session_id, instances)
 ```
 
-### Configuration
+## Configuration
 
 Claude Code Trees uses a flexible configuration system:
 
