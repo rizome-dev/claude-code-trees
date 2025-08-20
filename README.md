@@ -9,55 +9,9 @@ Easily manage Claude Code via Git Worktrees, SQLite & Claude Code SDK.
 
 ```bash
 pip install claude-code-trees
-
-# Or install from source with PDM (recommended for development)
-git clone https://github.com/rizome-dev/claude-code-trees.git
-cd claude-code-trees
-pdm install
 ```
 
-## Quick Start
-
-```python
-import asyncio
-from pathlib import Path
-from claude_code_trees import Orchestrator, Config
-
-async def main():
-    # Configure the orchestrator
-    config = Config(
-        claude_api_key="your-api-key-here",
-        max_concurrent_instances=3,
-        worktree_base_path=Path.cwd() / ".worktrees"
-    )
-    
-    # Initialize orchestrator with your git repository
-    orchestrator = Orchestrator("/path/to/your/repo", config)
-    
-    try:
-        # Create a Claude Code instance
-        instance = await orchestrator.create_instance(
-            worktree_name="feature-branch",
-            branch="feature/new-functionality"
-        )
-        
-        # Start the instance and run a task
-        await instance.start()
-        result = await instance.run_task(
-            "Create a new Python module with comprehensive documentation"
-        )
-        
-        if result["success"]:
-            print(f"Task completed: {result['output']}")
-        else:
-            print(f"Task failed: {result['error']}")
-            
-    finally:
-        await orchestrator.shutdown()
-
-# Run the example
-asyncio.run(main())
-```
+[Example Usage](https://github.com/rizome-dev/claude-code-trees/blob/main/examples/orchestration.py)
 
 ## Documentation
 
@@ -158,9 +112,9 @@ export CLCT_MAX_CONCURRENT_INSTANCES=5
 export CLCT_WORKTREE_BASE_PATH="/custom/path"
 ```
 
-## Use Cases
+### Use Cases
 
-### Parallel Feature Development
+#### Parallel Feature Development
 ```python
 # Run multiple feature implementations simultaneously
 tasks = [
@@ -172,7 +126,7 @@ tasks = [
 result = await orchestrator.run_parallel_tasks(tasks)
 ```
 
-### Sequential Workflow
+#### Sequential Workflow
 ```python
 # Run tasks in sequence with dependencies
 workflow = [
@@ -185,7 +139,7 @@ workflow = [
 result = await orchestrator.run_sequential_workflow(workflow)
 ```
 
-### Code Review and Analysis
+#### Code Review and Analysis
 ```python
 # Analyze code across multiple worktrees
 analysis_tasks = [
@@ -197,62 +151,7 @@ analysis_tasks = [
 results = await orchestrator.run_parallel_tasks(analysis_tasks)
 ```
 
-## Features
-
-### Error Handling & Resilience
-
-The library includes comprehensive error handling for common failure scenarios:
-
-```python
-# Automatic retry with exponential backoff
-result = await instance.execute_query(
-    prompt="Create a new module",
-    max_retries=3  # Retries on transient failures
-)
-
-# Handles specific Claude Code SDK errors
-try:
-    await instance.start()
-except CLINotFoundError:
-    print("Claude Code CLI not installed. Run: npm install -g @anthropic-ai/claude-code")
-except CLIConnectionError:
-    print("Failed to connect to Claude Code service")
-```
-
-### Logging
-
-Built-in structured logging for debugging and monitoring:
-
-```python
-import logging
-
-# Enable debug logging
-logging.basicConfig(level=logging.DEBUG)
-
-# Logs include:
-# - Task execution status
-# - Retry attempts
-# - Performance metrics
-# - Error details
-```
-
-### Thread Safety
-
-Safe for concurrent use with async/await patterns:
-
-```python
-# Run multiple instances concurrently
-async with orchestrator:
-    tasks = [
-        orchestrator.create_instance(f"instance-{i}")
-        for i in range(5)
-    ]
-    instances = await asyncio.gather(*tasks)
-```
-
 ## Development
-
-### Setup
 
 ```bash
 # Clone the repository
@@ -276,19 +175,6 @@ pdm run typecheck
 
 # Test coverage
 pdm run test-cov
-```
-
-### Running Examples
-
-```bash
-# Basic usage
-python examples/basic_usage.py
-
-# Parallel tasks
-python examples/parallel_tasks.py
-
-# Advanced orchestration
-python examples/advanced_orchestration.py
 ```
 
 ---
